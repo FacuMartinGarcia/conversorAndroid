@@ -2,14 +2,25 @@ package com.desarrolloar.conversor.modelo;
 
 public class Conversor {
 
-    private final double dolarAEuro = 0.87;
-    private final double euroADolar= 1.15;
+    private double dolarPorEuro;
 
-    private double convertirADolares(double euros){
-            return euros * euroADolar;
+    public Conversor(double dolarPorEuro) {
+        this.dolarPorEuro = dolarPorEuro;
     }
 
-    private double convertirAEuros(double dolares){
-            return dolares * dolarAEuro;
+    public double getDolarPorEuro() {
+        return dolarPorEuro;
+    }
+
+    public void setDolarPorEuro(double dolarPorEuro) {
+        this.dolarPorEuro = dolarPorEuro;
+    }
+
+    public double convertirADolares(double euros){
+            return euros / dolarPorEuro;
+    }
+
+    public double convertirAEuros(double dolares){
+            return dolares * dolarPorEuro;
     }
 }
