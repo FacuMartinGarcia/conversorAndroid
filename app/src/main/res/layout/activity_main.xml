@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -10,118 +10,116 @@
     tools:layout_editor_absoluteY="73dp">
 
     <TextView
-        android:id="@+id/tvValorConversion"
-        android:layout_width="72dp"
-        android:layout_height="19dp"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.397" />
+        android:id="@+id/tvDolares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="15dp"
+        android:text="Dolares" />
 
     <EditText
         android:id="@+id/etDolares"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tvDolares"
+        android:layout_below="@id/tvDolares"
         android:ems="10"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.129" />
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/tvEuros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/etDolares"
+        android:layout_below="@id/etDolares"
+        android:layout_marginTop="20dp"
+        android:text="Euros" />
 
     <EditText
         android:id="@+id/etEuros"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="584dp"
+        android:layout_alignLeft="@id/tvEuros"
+        android:layout_below="@id/tvEuros"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDolares"
-        app:layout_constraintVertical_bias="0.0" />
+        android:inputType="numberDecimal" />
 
-    <Button
-        android:id="@+id/btCambiarValor"
+    <TextView
+        android:id="@+id/tvConversion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cambiar Valor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
-        app:layout_constraintStart_toEndOf="@+id/tvValorConversion"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371" />
+        android:layout_alignLeft="@id/etEuros"
+        android:layout_below="@id/etEuros"
+        android:layout_marginTop="20dp"
+        android:text="Valor de Conversion" />
+
+    <TextView
+        android:id="@+id/tvValorConversion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvConversion"
+        android:layout_marginTop="12dp"
+        android:layout_alignLeft="@id/tvConversion"
+        android:text="$1=" />
+
+    <EditText
+        android:id="@+id/etCambio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvConversion"
+        android:layout_alignLeft="@id/tvValorConversion"
+        android:layout_marginLeft="30dp"
+        android:ems="4"
+        android:inputType="text"
+        android:text="" />
 
     <Button
         android:id="@+id/btConvertir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
+        android:layout_alignLeft="@id/radioGroup"
+        android:layout_below="@id/radioGroup"
+        android:layout_marginTop="20dp"
         android:text="Convertir"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.554"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:layout_constraintVertical_bias="0.0" />
+        android:onClick= "onClick" />
+
+    <Button
+        android:id="@+id/btCambValor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvValorConversion"
+        android:layout_alignBottom="@+id/tvValorConversion"
+        android:layout_toRightOf="@+id/tvConversion"
+        android:text="Cambiar Valor"
+        android:onClick="cambiar"
+        />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="183dp"
-        android:layout_height="95dp"
-        android:layout_marginTop="192dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEuros"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tvValorConversion"
+        android:layout_below="@id/tvValorConversion">
 
         <RadioButton
             android:id="@+id/rbDolares"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="Convertir a Dolares"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="398dp" />
+            android:textSize="16sp"
+             />
 
         <RadioButton
             android:id="@+id/rbEuros"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Convertir a Euros" />
+            android:text="Convertir a Euros"
+            android:textSize="16sp" />
+
     </RadioGroup>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="75dp"
-        android:layout_height="37dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Conversor de Moneda"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.037" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
