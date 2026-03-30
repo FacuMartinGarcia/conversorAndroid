@@ -1,27 +1,31 @@
 package com.desarrolloar.conversor;
 
 import android.app.Application;
-import android.content.Intent;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import com.desarrolloar.conversor.modelo.Conversor;
 
-import java.util.ArrayList;
 
 public class MainActivityViewModel extends AndroidViewModel {
 
     private MutableLiveData<Conversor>conversorMutableLiveData;
+    private MutableLiveData<Boolean> mostrarEuros = new MutableLiveData<>(true);
+    private MutableLiveData<Boolean> mostrarDolares = new MutableLiveData<>(false);
+    private MutableLiveData<String> mensajeToast = new MutableLiveData<>();
+
     private Conversor conversor;
+
+
 
     public MainActivityViewModel(@NonNull Application application) {
 
         super(application);
         //Establecemos un valor standard de X dolares por Euros
+
         conversor = new Conversor(0.87);
+
 
     }
 
@@ -34,6 +38,30 @@ public class MainActivityViewModel extends AndroidViewModel {
         return conversorMutableLiveData;
     }
 
+    public LiveData<Boolean> getMostrarEuros() {
+        return mostrarEuros;
+    }
+    public LiveData<Boolean> getMostrarDolares() {
+        return mostrarDolares;
+    }
+
+    public LiveData<String> getMensajeToast() {
+        return mensajeToast;
+    }
+
+    public void setSeleccionMoneda(int id, int idDolares) {
+
+        if (id == idDolares) {
+            mostrarEuros.setValue(true);
+            mostrarDolares.setValue(false);
+        } else {
+            mostrarEuros.setValue(false);
+            mostrarDolares.setValue(true);
+        }
+    }
+
+
+
     public void setValorDolarPorEuro(double valor) {
         if (valor > 0.0) {
             conversor.setDolarPorEuro(valor);
@@ -42,6 +70,22 @@ public class MainActivityViewModel extends AndroidViewModel {
             conversor.setDolarPorEuro(0.87);
         }
         conversorMutableLiveData.setValue(conversor);
+    }
+
+    public void setCambiarADolar(double valor) {
+        if (valor > 0.0) {
+            conversor.convertirAEuros(valor);
+        } else {
+            conversor.setDolarPorEuro(0.0);
+            importeInvalido();
+        }
+        conversorMutableLiveData.setValue(conversor);
+        //este valor
+
+    }
+
+    public void importeInvalido() {
+        mensajeToast.setValue("Ingrese un valor válido para convertir");
     }
 
 

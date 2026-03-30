@@ -3,6 +3,7 @@ package com.desarrolloar.conversor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -27,11 +28,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         b = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
-        b.etDolares.setVisibility(View.GONE);
-        b.tvDolares.setVisibility(View.GONE);
+        //b.etDolares.setVisibility(View.GONE);
+        //b.tvDolares.setVisibility(View.GONE);
 
 
         vm= new ViewModelProvider(this).get(MainActivityViewModel.class);
+
 
 
         vm.getValorDolarPorEuro().observe(this, new Observer<Conversor>() {
@@ -41,7 +43,51 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        b.seleccionRadio.setOnCheckedChangeListener((group, seleccion) -> {
+            if (seleccion != -1) {
+                vm.setSeleccionMoneda(seleccion);
+            }
+        });
 
+         */
+        b.seleccionRadio.setOnCheckedChangeListener((group, seleccion) -> {
+            vm.setSeleccionMoneda(seleccion, b.rbDolares.getId());
+        });
+
+
+        b.btConvertir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //aca hay que tener en cuenta que metodo usar
+                //de acuerdo a la seleccion del radioGroup
+                //los métodos de abajo
+            }
+        });
+
+        //vm.setCambiarADolar();
+        //vm.setCambiarAEuro();
+
+
+
+        vm.getMostrarEuros().observe(this, mostrar -> {
+            b.etEuros.setVisibility(mostrar ? View.VISIBLE : View.GONE);
+            b.tvEuros.setVisibility(mostrar ? View.VISIBLE : View.GONE);
+
+        });
+        vm.getMostrarDolares().observe(this, mostrar -> {
+            b.etDolares.setVisibility(mostrar ? View.VISIBLE : View.GONE);
+            b.tvDolares.setVisibility(mostrar ? View.VISIBLE : View.GONE);
+
+        });
+
+        vm.getMensajeToast().observe(this, mensaje -> {
+            if (mensaje != null) {
+                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        /*
         b.seleccionRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(@NonNull RadioGroup group, int seleccion) {
@@ -69,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         );
+
+         */
 
 
     }
