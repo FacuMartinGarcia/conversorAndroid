@@ -40,7 +40,6 @@
         android:layout_marginLeft="0dp"
         android:layout_marginBottom="-15dp"
         android:layout_toRightOf="@+id/tvConversion"
-        android:onClick="cambiar"
         android:text="Cambiar Valor" />
 
     <TextView
@@ -73,7 +72,6 @@
         android:layout_alignLeft="@id/seleccionRadio"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="20dp"
-        android:onClick="onClick"
         android:text="Convertir" />
 
     <RadioGroup
@@ -90,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:checked="true"
+            android:checked="false"
             android:text="Convertir a Dolares"
             android:textSize="16sp" />
         />
@@ -99,6 +97,7 @@
             android:id="@+id/rbEuros"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="false"
             android:text="Convertir a Euros"
             android:textSize="16sp" />
 
