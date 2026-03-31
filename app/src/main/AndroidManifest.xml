@@ -13,7 +13,8 @@
         android:theme="@style/Theme.Conversor">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="Conversor de Moneda">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

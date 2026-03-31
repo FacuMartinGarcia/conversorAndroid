@@ -21,29 +21,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         b = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
 
-        //b.etDolares.setVisibility(View.GONE);
-        //b.tvDolares.setVisibility(View.GONE);
-
         vm= new ViewModelProvider(this).get(MainActivityViewModel.class);
 
-        b.etEuros.setEnabled(false);
-        b.etDolares.setEnabled(false);
+        setSupportActionBar(b.toolbar);
+
+        // Mostrar cotización inicial
+        b.etCambio.setText(vm.getCotizacionActual());
+
 
         // Captura la seleccion de la opcion Convertir a dolares/ Euros
-        b.seleccionRadio.setOnCheckedChangeListener((group, checkedId) ->
-                vm.setSeleccionMoneda(checkedId, b.rbDolares.getId(), b.rbEuros.getId())
-        );
+        b.seleccionRadio.setOnCheckedChangeListener((group, checkedId) -> {
+            vm.setSeleccionMoneda(checkedId, b.rbDolares.getId(), b.rbEuros.getId());
+
+            b.etEuros.setText("");
+            b.etDolares.setText("");
+        });
 
         // Despues de caputurar la seleccion, se habilita el campo correspondiente
         vm.getMostrarEuros().observe(this, habilitar -> {
             b.etEuros.setEnabled(habilitar);
+            b.tvEuros.setEnabled(habilitar);
         });
 
         vm.getMostrarDolares().observe(this, habilitar -> {
             b.etDolares.setEnabled(habilitar);
+            b.tvDolares.setEnabled(habilitar);
         });
 
         // Al hacer click en "Cambiar valor" se llama al metodo del VM y
@@ -75,85 +81,27 @@ public class MainActivity extends AppCompatActivity {
             b.etDolares.setText(res);
         });
 
+        //Empieza con la opcion para convertir euros a dólares por defecto
+        inicializarPorDefecto();
 
-        /*b.btConvertir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //aca hay que tener en cuenta que metodo usar
-                //de acuerdo a la seleccion del radioGroup
-                //los métodos de abajo
-            }
-        });*/
-
-        //vm.setCambiarADolar();
-        //vm.setCambiarAEuro();
-
-        /* vm.getValorDolarPorEuro().observe(this, new Observer<Conversor>() {
-            @Override
-            public void onChanged(Conversor conversor) {
-                b.etCambio.setText(String.valueOf(conversor.getCotizacion()));
-            }
-        });/*
-
-        /*
-        b.seleccionRadio.setOnCheckedChangeListener((group, seleccion) -> {
-            if (seleccion != -1) {
-                vm.setSeleccionMoneda(seleccion);
+        vm.getLimpiarCampos().observe(this, limpiar -> {
+            if (limpiar) {
+                b.etEuros.setText("");
+                b.etDolares.setText("");
             }
         });
-
-         */
-
-
-        /*vm.getMostrarEuros().observe(this, mostrar -> {
-            b.etEuros.setVisibility(mostrar ? View.VISIBLE : View.GONE);
-            b.tvEuros.setVisibility(mostrar ? View.VISIBLE : View.GONE);
-
-        });
-        vm.getMostrarDolares().observe(this, mostrar -> {
-            b.etDolares.setVisibility(mostrar ? View.VISIBLE : View.GONE);
-            b.tvDolares.setVisibility(mostrar ? View.VISIBLE : View.GONE);
-
-        });
-
-        vm.getMensajeToast().observe(this, mensaje -> {
-            if (mensaje != null) {
-                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
-            }
-        });/*
-
-        /*
-        b.seleccionRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(@NonNull RadioGroup group, int seleccion) {
-                if (seleccion == -1) {
-                    // nada seleccionado
-                    return;
-                }
-                //Se podría establecer las coordenadas para que queden en el mismo lugar
-                if (seleccion == b.rbDolares.getId()) {
-                    b.etDolares.setVisibility(View.GONE);
-                    b.tvDolares.setVisibility(View.GONE);
-
-                    b.etEuros.setVisibility(View.VISIBLE);
-                    b.tvEuros.setVisibility(View.VISIBLE);
-                    b.etEuros.setText("");
-                } else if (seleccion == b.rbEuros.getId()) {
-
-                    b.etDolares.setVisibility(View.VISIBLE);
-                    b.tvDolares.setVisibility(View.VISIBLE);
-                    b.etDolares.setText("");
-
-                    b.etEuros.setVisibility(View.GONE);
-                    b.tvEuros.setVisibility(View.GONE);
-                }
-                }
-            }
-        );
-
-         */
-
 
     }
+
+    public void inicializarPorDefecto() {
+        b.rbEuros.setChecked(true);
+        vm.setSeleccionMoneda(
+                b.rbEuros.getId(),
+                b.rbDolares.getId(),
+                b.rbEuros.getId()
+        );
+    }
+
+
 
     }

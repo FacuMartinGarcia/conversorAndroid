@@ -9,16 +9,34 @@
     tools:layout_editor_absoluteX="-1dp"
     tools:layout_editor_absoluteY="73dp">
 
-    <EditText
-        android:id="@+id/etDolares"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvDolares"
-        android:layout_alignLeft="@id/tvDolares"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="1dp"
-        android:ems="10"
-        android:inputType="numberDecimal" />
+        android:background="?attr/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Conversor de Moneda"
+                android:textColor="@android:color/white"
+                android:textSize="26sp"/>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <EditText
         android:id="@+id/etEuros"
@@ -27,20 +45,9 @@
         android:layout_below="@id/tvEuros"
         android:layout_alignLeft="@id/tvEuros"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="6dp"
         android:ems="10"
         android:inputType="numberDecimal" />
-
-    <Button
-        android:id="@+id/btCambValor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvValorConversion"
-        android:layout_alignBottom="@+id/tvValorConversion"
-        android:layout_marginLeft="0dp"
-        android:layout_marginBottom="-15dp"
-        android:layout_toRightOf="@+id/tvConversion"
-        android:text="Cambiar Valor" />
 
     <TextView
         android:id="@+id/tvValorConversion"
@@ -52,28 +59,6 @@
         android:layout_marginTop="15dp"
         android:text="$1=" />
 
-    <EditText
-        android:id="@+id/etCambio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvConversion"
-        android:layout_alignLeft="@id/tvValorConversion"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="2dp"
-        android:ems="4"
-        android:inputType="text"
-        android:text="" />
-
-    <Button
-        android:id="@+id/btConvertir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/seleccionRadio"
-        android:layout_alignLeft="@id/seleccionRadio"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="20dp"
-        android:text="Convertir" />
-
     <RadioGroup
         android:id="@+id/seleccionRadio"
         android:layout_width="wrap_content"
@@ -81,7 +66,7 @@
         android:layout_below="@id/tvValorConversion"
         android:layout_alignLeft="@id/tvValorConversion"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="1dp">
+        android:layout_marginTop="5dp">
 
         <RadioButton
             android:id="@+id/rbDolares"
@@ -109,9 +94,53 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/etEuros"
         android:layout_alignLeft="@id/etEuros"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="35dp"
         android:text="Valor de Conversion" />
+
+    <Button
+        android:id="@+id/btConvertir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seleccionRadio"
+        android:layout_alignLeft="@id/seleccionRadio"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="14dp"
+        android:text="Convertir" />
+
+    <Button
+        android:id="@+id/btCambValor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvValorConversion"
+        android:layout_alignBottom="@+id/tvValorConversion"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="-15dp"
+        android:layout_toRightOf="@+id/tvConversion"
+        android:text="Cambiar Valor" />
+
+    <EditText
+        android:id="@+id/etCambio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvConversion"
+        android:layout_alignLeft="@id/tvValorConversion"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="2dp"
+        android:ems="4"
+        android:inputType="text"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/etDolares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDolares"
+        android:layout_alignLeft="@id/tvDolares"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="1dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/tvDolares"
@@ -119,8 +148,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="119dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="83dp"
         android:text="Dolares" />
 
     <TextView
@@ -129,8 +158,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/etDolares"
         android:layout_alignLeft="@id/etDolares"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="19dp"
         android:text="Euros" />
 
 </RelativeLayout>

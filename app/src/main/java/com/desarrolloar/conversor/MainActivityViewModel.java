@@ -12,20 +12,19 @@ import java.util.Locale;
 
 public class MainActivityViewModel extends AndroidViewModel {
 
-    //private MutableLiveData<Conversor>conversorMutableLiveData;
+
     private MutableLiveData<Boolean> mostrarEuros = new MutableLiveData<>(false);
     private MutableLiveData<Boolean> mostrarDolares = new MutableLiveData<>(false);
     private MutableLiveData<String> mensajeToast = new MutableLiveData<>();
     private MutableLiveData<String> resultadoEuros = new MutableLiveData<>("");
     private MutableLiveData<String> resultadoDolares = new MutableLiveData<>("");
+    private MutableLiveData<Boolean> limpiarCampos = new MutableLiveData<>();
     private static final int nadaSeleccionado = 0;
     private static final int dolares = 1;
     private static final int euros = 2;
     private final MutableLiveData<Integer> tipoConversion = new MutableLiveData<>(nadaSeleccionado);
 
     private Conversor conversor;
-
-
 
     public MainActivityViewModel(@NonNull Application application) {
 
@@ -34,17 +33,7 @@ public class MainActivityViewModel extends AndroidViewModel {
 
         conversor = new Conversor(0.87);
 
-
     }
-
-    // El liveData lo iniciamos con el valor de 0.87
-   /* public LiveData<Conversor> getValorDolarPorEuro() {
-        if (conversorMutableLiveData == null) {
-            conversorMutableLiveData = new MutableLiveData<>();
-            conversorMutableLiveData.setValue(conversor);
-        }
-        return conversorMutableLiveData;
-    }*/
 
     public LiveData<Boolean> getMostrarEuros() {
         return mostrarEuros;
@@ -61,24 +50,13 @@ public class MainActivityViewModel extends AndroidViewModel {
     public LiveData<String> getMensajeToast() {
         return mensajeToast;
     }
+    public LiveData<Boolean> getLimpiarCampos() {return limpiarCampos;}
     public String getCotizacionActual() {
         return formatear(conversor.getCotizacion());
     }
     private String formatear(double valor) {
         return String.format(Locale.getDefault(), "%.2f", valor);
     }
-
-
-    /*public void setSeleccionMoneda(int id, int idDolares) {
-
-        if (id == idDolares) {
-            mostrarEuros.setValue(true);
-            mostrarDolares.setValue(false);
-        } else {
-            mostrarEuros.setValue(false);
-            mostrarDolares.setValue(true);
-        }
-    }*/
 
     // Metodo para decir que tipo de conversion hacer, en base a la seleccion del usuario.
     // En tipoConversion se guarda la seleccion para poder usarse en el metodo convertir.
@@ -96,6 +74,7 @@ public class MainActivityViewModel extends AndroidViewModel {
             mostrarEuros.setValue(false);
             mostrarDolares.setValue(false);
         }
+        limpiarCampos.setValue(true);
     }
     // Metodo para cambiar la cotizacion ingresada por el usuario.
     // Se actualiza la cotizacion para realizar la conversion.
@@ -132,7 +111,6 @@ public class MainActivityViewModel extends AndroidViewModel {
             double dolares = conversor.convertirADolares(euros);
 
             resultadoDolares.setValue(formatear(dolares));
-            resultadoEuros.setValue(""); // limpiar
 
         } else if (tipo == euros) {
 
@@ -145,7 +123,7 @@ public class MainActivityViewModel extends AndroidViewModel {
             double euros = conversor.convertirAEuros(dolares);
 
             resultadoEuros.setValue(formatear(euros));
-            resultadoDolares.setValue(""); // limpiar
+
         }
     }
 
