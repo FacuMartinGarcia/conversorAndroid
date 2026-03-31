@@ -48,13 +48,7 @@ La lógica de negocio está desacoplada de la interfaz gracias al patrón **MVVM
 
 ---
 
-🖼️ Interfaz de usuario (XML) y captura de pantalla
-
-Archivo:
-
-app/src/main/res/layout/activity_main.xml
-
-### Vista principal de la aplicación:
+🖼️ ## Vista principal de la aplicación:
 
 <p align="center">
   <img src="img/captura-app.jpg" alt="Captura de pantalla de la app" width="300"/>
@@ -91,6 +85,7 @@ conversorAndroid-main/
 ├── build.gradle.kts
 ├── settings.gradle.kts
 └── README.md
+└── img/captura-app.jpg
 ```
 
 ---
@@ -114,48 +109,6 @@ git clone https://github.com/FacuMartinGarcia/conversorAndroid
 
 ---
 
-## 🧪 Validaciones implementadas
-
-Incluimos validaciones :
-
-### En `cambiarCotizacion(...)`
-
-* Verifica que la cotización:
-
-  * no esté vacía
-  * sea numérica
-  * sea mayor a `0`
-
-Si no cumple:
-
-* muestra el mensaje:
-
-```text
-Ingrese una cotización válida
-```
-
-### En `convertir(...)`
-
-* Verifica que haya una opción seleccionada
-* Verifica que el valor ingresado:
-
-  * no esté vacío
-  * sea numérico válido
-
-Mensajes posibles:
-
-* `Seleccioná una opción`
-* `Ingrese un valor válido en euros`
-* `Ingrese un valor válido en dólares`
-
-### En `parseNumero(...)`
-
-* Acepta tanto **coma** como **punto** decimal:
-
-  * ejemplo: `10,5` o `10.5`
-* Esto mejora la usabilidad para diferentes usuarios usuarios  
-
----
 
 ## 👨‍💻 Autor / Integrantes
 
@@ -179,5 +132,5 @@ Repositorio público del proyecto:
 
 Este proyecto representa una implementación práctica y correcta de una aplicación Android simple, aplicando el patrón **MVVM** con **Java**, **LiveData** y **ViewBinding**.
 
-Además de resolver la conversión entre monedas, el trabajo nos ayudo a aprnder sobre de organización en capas, separación de responsabilidades y validación de entradas, cumpliendo con los objetivos principales del trabajo asignado.
+Además de resolver la conversión entre monedas, el trabajo nos ayudo a aprender sobre de organización en capas, separación de responsabilidades y validación de entradas, cumpliendo con los objetivos principales del trabajo asignado.
 
