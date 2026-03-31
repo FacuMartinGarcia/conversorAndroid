@@ -48,7 +48,7 @@ La lógica de negocio está desacoplada de la interfaz gracias al patrón **MVVM
 
 ---
 
-🖼️ ## Vista principal de la aplicación:
+## 📱 Vista principal de la aplicación:
 
 <p align="center">
   <img src="img/captura-app.jpg" alt="Captura de pantalla de la app" width="300"/>
