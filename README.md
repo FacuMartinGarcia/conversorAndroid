@@ -47,6 +47,18 @@ La lógica de negocio está desacoplada de la interfaz gracias al patrón **MVVM
 - ✅ Manejo de errores mediante **Toast**
 
 ---
+🖼️ Interfaz de usuario (XML) y captura de pantalla
+
+Archivo:
+
+app/src/main/res/layout/activity_main.xml
+
+###Vista principal de la aplicación:
+
+<p align="center">
+  <img src="img/captura-app.jpg" alt="Captura de pantalla de la app" width="300"/>
+</p>
+---
 
 ## 📂 Estructura real del proyecto
 
