@@ -440,6 +440,3 @@ Este proyecto representa una implementación práctica y correcta de una aplicac
 
 Además de resolver la conversión entre monedas, el trabajo nos ayudo a aprnder sobre de organización en capas, separación de responsabilidades y validación de entradas, cumpliendo con los objetivos principales del trabajo asignado.
 
-````
-
-
