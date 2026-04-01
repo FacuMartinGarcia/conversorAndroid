@@ -35,10 +35,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Captura la seleccion de la opcion Convertir a dolares/ Euros
         b.seleccionRadio.setOnCheckedChangeListener((group, checkedId) -> {
-            vm.setSeleccionMoneda(checkedId, b.rbDolares.getId(), b.rbEuros.getId());
 
-            b.etEuros.setText("");
-            b.etDolares.setText("");
+            if (checkedId == b.rbDolares.getId()){
+                vm.setSeleccionMoneda(1); //SELECCION DOLARES
+            } else if (checkedId == b.rbEuros.getId()) {
+                vm.setSeleccionMoneda(2); //EUROS
+            } else {
+                vm.setSeleccionMoneda(0); //NO SELECCIONO NADA
+            }
         });
 
         // Despues de caputurar la seleccion, se habilita el campo correspondiente
@@ -95,11 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void inicializarPorDefecto() {
         b.rbEuros.setChecked(true);
-        vm.setSeleccionMoneda(
-                b.rbEuros.getId(),
-                b.rbDolares.getId(),
-                b.rbEuros.getId()
-        );
+        vm.setSeleccionMoneda(2);
     }
 
 
