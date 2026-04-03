@@ -117,6 +117,7 @@ git clone https://github.com/FacuMartinGarcia/conversorAndroid
 * Facundo Martín García
 * Victor Angel Aguilera
 * Rafael Nicolas Cuello
+* Martin Nahuel Becerra
 
 ---
 
