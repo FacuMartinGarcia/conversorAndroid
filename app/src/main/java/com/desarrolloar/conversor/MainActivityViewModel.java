@@ -60,17 +60,16 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     // Metodo para decir que tipo de conversion hacer, en base a la seleccion del usuario.
     // En tipoConversion se guarda la seleccion para poder usarse en el metodo convertir.
-    public void setSeleccionMoneda(int checkedId, int idDolares, int idEuros) {
-        if (checkedId == idDolares) {
-            tipoConversion.setValue(dolares);
+    public void setSeleccionMoneda(int tipo) {
+        tipoConversion.setValue(tipo);
+
+        if (tipo == dolares){
             mostrarEuros.setValue(true);
             mostrarDolares.setValue(false);
-        } else if (checkedId == idEuros) {
-            tipoConversion.setValue(euros);
+        } else if (tipo == euros) {
             mostrarEuros.setValue(false);
             mostrarDolares.setValue(true);
         } else {
-            tipoConversion.setValue(nadaSeleccionado);
             mostrarEuros.setValue(false);
             mostrarDolares.setValue(false);
         }
