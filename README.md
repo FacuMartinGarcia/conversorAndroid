@@ -47,6 +47,14 @@ La lógica de negocio está desacoplada de la interfaz gracias al patrón **MVVM
 - ✅ Manejo de errores mediante **Toast**
 
 ---
+## 🥸 Explicación breve de cómo se implementó MVVM
+
+En este proyecto aplicamos MVVM para separar la lógica de la aplicación de la parte visual.
+La Activity y el XML se encargan de mostrar la interfaz y capturar las acciones del usuario, mientras que el ViewModel se ocupa de procesar los datos, validar entradas y realizar las conversiones.
+
+El ViewModel actualiza los resultados mediante LiveData, y la Activity observa esos cambios para reflejarlos en la interfaz.
+De esta forma, evitamos mezclar cálculos y validaciones dentro de la Activity, logrando un código más ordenado, claro y fácil de mantener.
+---
 
 ## 📱 Vista principal de la aplicación:
 
@@ -112,12 +120,12 @@ git clone https://github.com/FacuMartinGarcia/conversorAndroid
 
 ## 👨‍💻 Autor / Integrantes
 
-**Integrantes del grupo:**
+## 👨‍💻 Integrantes del grupo
 
-* Facundo Martín García
-* Victor Angel Aguilera
-* Rafael Nicolas Cuello
-* Martin Nahuel Becerra
+- Facundo Martín García – DNI: 28399283
+- Victor Angel Aguilera – DNI: 36220045
+- Rafael Nicolas Cuello – DNI: 39396258
+- Martin Nahuel Becerra – DNI: 47266622
 
 ---
 
